@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Love</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fffafc;
+        }
+
+        .logo {
+            font-size: 80px;
+            font-weight: bold;
+            letter-spacing: -5px;
+            margin-bottom: 30px;
+        }
+        /* Warna-warni logo Google */
+        .g1 { color: #ff6b6b; }
+        .o1 { color: #f06595; } 
+        .o2 { color: #ff8787; } 
+        .g2 { color: #ff6b6b; }
+        .l { color: #51cf66; }  
+        .e { color: #fcc419; }  
+
+        .search-container {
+            width: 100%;
+            max-width: 580px;
+            text-align: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 1px solid #dfe1e5;
+            font-size: 18px;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        
+        .search-bar:focus {
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+            border-color: #ff8787;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            color: #3c4043;
+            font-family: arial,sans-serif;
+            font-size: 14px;
+            margin: 11px 4px;
+            padding: 10px 20px;
+            line-height: 27px;
+            height: 36px;
+            min-width: 54px;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .btn:hover {
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            background-color: #fce4ec; /* Hover jadi pink muda */
+            color: #d63384;
+            border: 1px solid #fce4ec;
+        }
+
+        /* Bagian Hasil Pencarian (disembunyikan dulu) */
+        #resultArea {
+            display: none; /* Hidden by default */
+            margin-top: 40px;
+            max-width: 600px;
+            text-align: left;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .result-stats {
+            color: #70757a;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.15);
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .result-link {
+            color: #d63384;
+            font-size: 22px;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .result-url {
+            color: #28a745;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .result-desc {
+            color: #4d5156;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            background-color: #ffdeeb;
+            padding: 2px 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Efek loading */
+        .loading {
+            display: none;
+            font-size: 24px;
+            color: #ff6b6b;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="mainSearchPage">
+        <div class="logo">
+            <span class="g1">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
+            <span style="font-size: 30px; color: #ff6b6b;">❤️</span>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-bar" id="searchInput" placeholder="Ketik pertanyaannya di sini...">
+            <div class="buttons">
+                <button class="btn" onclick="lakukanPencarian()">Google Love Search</button>
+                <button class="btn" onclick="lakukanPencarian()">I'm Feeling Lucky</button>
+            </div>
+            <div class="loading" id="loadingText">Sedang mencari di database hati... 💖</div>
+        </div>
+    </div>
+
+
+    <div id="resultArea">
+        <div class="result-stats">
+            Sekitar 1.000.000.000 hasil (0,00001 detik) - Semuanya tentang kamu.
+        </div>
+
+        <div class="result-card">
+            <a href="#" class="result-link">Jawaban Paling Akurat: I Love You.</a>
+            <span class="result-url">www.hatiku.com/fakta-tervalid/thank-you</span>
+            
+            <div class="result-desc">
+                Berdasarkan algoritma perasaanku, ditemukan fakta bahwa: <br><br>
+                1. <span class="highlight">Aku sayang banget sama kamu.</span> <br>
+                2. Kehadiran kamu adalah "update" terbaik di hidup aku. <br>
+                3. Sistem akan *crash* kalau nggak ada kamu. <br><br>
+                <b>Kesimpulan:</b> Thank you udah hadir di hidup aku, yaaa!! 
+                Love You Sooooo Muchhh Aa💖💖
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function lakukanPencarian() {
+            const input = document.getElementById('searchInput').value;
+            const mainPage = document.getElementById('mainSearchPage');
+            const resultArea = document.getElementById('resultArea');
+            const loadingText = document.getElementById('loadingText');
+            
+            // Sedikit validasi kalau belum ngetik
+            if(input.trim() === "") {
+                alert("Ketik dulu dong pertanyaannya, ganteng 😉");
+                return;
+            }
+
+            // Tampilkan efek loading
+            loadingText.style.display = "block";
+            document.querySelector('.buttons').style.display = "none";
+
+            // Tunggu 2 detik pura-pura mikir, baru munculin hasil
+            setTimeout(() => {
+                mainPage.style.display = 'none'; // Sembunyikan halaman depan
+                resultArea.style.display = 'block'; // Munculkan hasil
+            }, 2000);
+        }
+
+        // Biar bisa tekan Enter juga buat nyari
+        document.getElementById("searchInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                lakukanPencarian();
+            }
+        });
+    </script>
+
+</body>
+</html>
